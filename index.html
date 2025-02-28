@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Transaction Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: green;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkgreen;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Fraud Transaction Detector</h2>
+
+        <label>Transaction ID:</label>
+        <input type="number" id="transaction_id" placeholder="Enter Transaction ID" required>
+
+        <label>Transaction Amount:</label>
+        <input type="number" id="tx_amount" placeholder="Enter Transaction Amount" required>
+
+        <label>Customer ID:</label>
+        <input type="number" id="customer_id" placeholder="Enter Customer ID" required>
+
+        <label>Terminal ID:</label>
+        <input type="number" id="terminal_id" placeholder="Enter Terminal ID" required>
+
+        <button onclick="checkFraud()">Check Fraud</button>
+
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        function checkFraud() {
+            let transactionID = document.getElementById("transaction_id").value;
+            let txAmount = document.getElementById("tx_amount").value;
+            let customerID = document.getElementById("customer_id").value;
+            let terminalID = document.getElementById("terminal_id").value;
+            let resultDiv = document.getElementById("result");
+
+            // Sample fraud detection logic based on TX_AMOUNT
+            let fraudCases = [
+                { "TRANSACTION_ID": 2, "TX_AMOUNT": 500, "TX_FRAUD": 1 },
+                { "TRANSACTION_ID": 5, "TX_AMOUNT": 700, "TX_FRAUD": 1 },
+                { "TRANSACTION_ID": 8, "TX_AMOUNT": 300, "TX_FRAUD": 1 },
+                { "TRANSACTION_ID": 10, "TX_AMOUNT": 450, "TX_FRAUD": 1 }
+            ];
+
+            let isFraud = fraudCases.some(tx => 
+                tx.TRANSACTION_ID == transactionID && tx.TX_AMOUNT == txAmount
+            );
+
+            if (isFraud) {
+                resultDiv.innerHTML = "🚨 Fraudulent Transaction!";
+                resultDiv.style.color = "red";
+            } else {
+                resultDiv.innerHTML = "✅ Legitimate Transaction!";
+                resultDiv.style.color = "green";
+            }
+        }
+    </script>
+</body>
+</html>

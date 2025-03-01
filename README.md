@@ -8,7 +8,7 @@ A fraud detection system that analyzes transaction patterns and identifies suspi
 
 🔹 Key Features
 
-✅ Utilizes Random Forest, Logistic Regression, and SVM for fraud classification.
+✅ Utilizes Random Forest for fraud classification.
 
 ✅ Achieves 100% accuracy in fraud detection.
 
